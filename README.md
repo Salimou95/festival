@@ -31,9 +31,36 @@ Application mobile développée avec **React Native** et **expo-router** pour pr
 - Utilisation de [`react-native-collapsible`](https://github.com/oblador/react-native-collapsible) pour créer un **menu accordéon**.
 - Intégration dans l’écran **Menu** avec une section dédiée aux **modes d’accès au festival** (voiture, transports en commun, etc.).
 - Animation fluide pour une meilleure expérience utilisateur.
- 
+
+## ⚠️ Important : configuration de l’API locale
+
+> Pour que l’application fonctionne correctement avec l’API en local, vous devez **remplacer l’adresse IP** dans le fichier suivant :
+
+```
+festival/app/(tabs)/programmation.tsx
+```
+
+### 📌 Lignes concernées (17 à 19) :
+
+```ts
+Promise.all([
+  fetch("http://192.168.1.20:3000/programme").then((r) => r.json()),
+  fetch("http://192.168.1.20:3000/artists").then((r) => r.json()),
+  fetch("http://192.168.1.20:3000/stages").then((r) => r.json()),
+])
+```
+
+👉 **Remplacez `192.168.1.20` par votre propre adresse IP locale**, visible avec la commande :
+
+```bash
+ipconfig   # sur Windows
+ifconfig   # sur Mac/Linux
+```
+
+Cela permet d'établir la communication avec le backend en local.
+
 ---
- 
+
 ## 📦 Technologies utilisées
  
 - `React Native`

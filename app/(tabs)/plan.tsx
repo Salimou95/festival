@@ -1,43 +1,21 @@
-
-import React from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
-import MapView, { Marker } from "react-native-maps";
-
-const { width, height } = Dimensions.get("window");
+import { StyleSheet, Text, View } from "react-native";
+import {
+	GestureHandlerRootView,
+	ScrollView,
+} from "react-native-gesture-handler";
 
 const PlanScreen = (): React.JSX.Element => {
 	return (
-		<View style={styles.container}>
-			<MapView
-				style={styles.map}
-				initialRegion={{
-					latitude: 43.9251,
-					longitude: 2.148,
-					latitudeDelta: 0.01,
-					longitudeDelta: 0.01,
-				}}
-			>
-				<Marker
-					coordinate={{
-						latitude: 43.9251,
-						longitude: 2.148,
-					}}
-					title="Albi"
-					description="Ville du festival"
-				/>
-			</MapView>
-		</View>
+		<GestureHandlerRootView>
+			<ScrollView>
+				<View>
+					<Text>PlanScreen</Text>
+				</View>
+			</ScrollView>
+		</GestureHandlerRootView>
 	);
 };
 
 export default PlanScreen;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	map: {
-		width: width,
-		height: height,
-	},
-});
+const styles = StyleSheet.create({});

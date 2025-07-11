@@ -1,5 +1,3 @@
-// festival/app/(tabs)/menu.tsx
-
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Collapsible from "react-native-collapsible";

@@ -1,92 +1,122 @@
-import { Image, ImageBackground } from "expo-image";
+// festival/app/(tabs)/index.tsx
+
+import { Feather } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { router, Tabs } from "expo-router";
 import type React from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
-import {
-	GestureHandlerRootView,
-	ScrollView,
-} from "react-native-gesture-handler";
-import CountDownComponent from "../../components/home/countdown_component";
-import ProgrammationListComponent from "../../components/home/programmation_list_component";
+import { StyleSheet, TouchableHighlight } from "react-native";
 import UserIconBtnComponent from "../../components/shared/user_icon_btn_component";
+import { colors, fonts } from "../../constants/design_constants";
 
-/*
-	créer un composant :
-		- un composant est une fonction JS exportée
-		- le nom des composants sont capitalisés
-		- return définit les éléments affichés dans le composant
-		- exporter le composant
-*/
-const HomeScreen = (): React.JSX.Element => {
+const TabsLayout = (): React.JSX.Element => {
 	return (
-		// GestureHandlerRootView permet le défilement d'un écran
-		<GestureHandlerRootView>
-			{/* View équivaut à un div en HTML */}
-			<View>
-				{/* la props isHome permet de savoir si l'icône est affichée sur l'écran d'accueil */}
-				<UserIconBtnComponent isHome />
-				<ImageBackground
-					source={require("../../assets/images/prog-globale-web-fond-03-scaled.jpg")}
-					// contentFit équivaut à object-fit en CSS
-					contentFit="cover"
-					style={styles.imgBg}
-				>
-					{/* logo */}
+		<Tabs
+			screenOptions={{
+				tabBarStyle: styles.tabBarStyle,
+				tabBarLabelStyle: styles.tabBarLabelStyle,
+				headerStyle: styles.headerStyle,
+				headerTitleAlign: "center",
+				headerTitle: () => (
 					<Image
-						source={require("../../assets/images/LOGO-PG-2025-couleur.png")}
-						contentFit="contain"
-						style={styles.logo}
+						source={require("../../assets/images/27839514-diaporama.png")}
+						style={styles.headerTitle}
 					/>
-					{/* foule */}
-					<Image
-						source={require("../../assets/images/480648993_1152406629587252_299510857718669656_n.png")}
-						contentFit="contain"
-						style={styles.crowd}
-					/>
-				</ImageBackground>
-				{/* ScrollView : contenu défilant */}
-				<ScrollView>
-					<ImageBackground
-						source={require("../../assets/images/DECHIRE-GRIS-SIMPLE.png")}
-						contentFit="fill"
-						style={styles.scrollContainer}
-					>
-						{/* compte à rebours */}
-						<CountDownComponent />
-
-						{/* programmation */}
-						<ProgrammationListComponent />
-					</ImageBackground>
-				</ScrollView>
-			</View>
-		</GestureHandlerRootView>
+				),
+				headerRight: () => <UserIconBtnComponent />,
+			}}
+		>
+			<Tabs.Screen
+				name="programmation"
+				options={{
+					tabBarLabel: "Prog",
+					tabBarIcon: () => (
+						<Feather name="music" style={styles.tabBarIconStyle} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="plan"
+				options={{
+					tabBarLabel: "Plan",
+					tabBarIcon: () => (
+						<Feather name="map-pin" style={styles.tabBarIconStyle} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="menu"
+				options={{
+					tabBarLabel: "Menu",
+					tabBarIcon: () => (
+						<Feather name="menu" style={styles.tabBarIconStyle} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="(drawer)"
+				options={{
+					tabBarLabel: "Billets",
+					tabBarIcon: () => (
+						<Feather name="activity" style={styles.tabBarIconStyle} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="index"
+				options={{
+					headerShown: false,
+					tabBarLabel: "",
+					tabBarIcon: () => (
+						<TouchableHighlight
+							underlayColor={colors.ternary}
+							style={styles.iconHomeBtn}
+							onPress={() => router.navigate("/")}
+						>
+							<Image
+								source={require("../../assets/images/img-w1200-h628-dc010101.png")}
+								style={styles.iconHomeImgBtn}
+							/>
+						</TouchableHighlight>
+					),
+				}}
+			/>
+		</Tabs>
 	);
 };
 
-export default HomeScreen;
+export default TabsLayout;
 
 const styles = StyleSheet.create({
-	imgBg: {
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height * 0.7,
-		position: "absolute",
-		top: 0,
-		left: 0,
+	headerStyle: {
+		backgroundColor: colors.secondary,
 	},
-	logo: {
-		width: 300,
-		height: 400,
-		position: "absolute",
-		top: Dimensions.get("window").height * 0.2,
-		left: Dimensions.get("window").width / 2 - 300 / 2,
+	headerTitle: {
+		width: 95,
+		height: 40,
 	},
-	crowd: {
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height * 0.15,
-		position: "absolute",
-		top: Dimensions.get("window").height * 0.2 + 350,
+	tabBarStyle: {
+		backgroundColor: colors.secondary,
 	},
-	scrollContainer: {
-		paddingBlockStart: 30,
-		marginBlockStart: Dimensions.get("window").height * 0.7,
+	tabBarLabelStyle: {
+		fontFamily: fonts.body,
+		fontSize: 12,
+		color: "rgba(255 255 255 / 1)",
+	},
+	tabBarIconStyle: {
+		color: "rgba(255 255 255 / 1)",
+		fontSize: 25,
+	},
+	iconHomeBtn: {
+		width: 65,
+		height: 65,
+		borderRadius: 50,
+		backgroundColor: colors.ternary,
+		justifyContent: "center",
+		alignItems: "center",
+		top: -20,
+	},
+	iconHomeImgBtn: {
+		width: 35,
+		height: 30,
 	},
 });

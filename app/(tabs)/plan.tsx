@@ -28,15 +28,3 @@ const PlanScreen = (): React.JSX.Element => {
         </View>
     );
 };
-
-export default PlanScreen;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    map: {
-        width: width,
-        height: height,
-    },
-});

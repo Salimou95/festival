@@ -32,6 +32,17 @@ const TabsLayout = (): React.JSX.Element => {
 					),
 				}}
 			/>
+
+			<Tabs.Screen
+				name="plan"
+				options={{
+					tabBarLabel: "Plan",
+					tabBarIcon: () => (
+						<Feather name="map" style={styles.tabBarIconStyle} />
+					),
+				}}
+			/>
+
 			<Tabs.Screen
 				name="(drawer)"
 				options={{
@@ -41,6 +52,7 @@ const TabsLayout = (): React.JSX.Element => {
 					),
 				}}
 			/>
+
 			<Tabs.Screen
 				name="index"
 				options={{
@@ -48,7 +60,6 @@ const TabsLayout = (): React.JSX.Element => {
 					tabBarLabel: "",
 					tabBarIcon: () => (
 						<TouchableHighlight
-							// couleur de l'effet lorsque l'élément est activé
 							underlayColor={colors.ternary}
 							style={styles.iconHomeBtn}
 							onPress={() => router.navigate("/")}
@@ -90,7 +101,7 @@ const styles = StyleSheet.create({
 	iconHomeBtn: {
 		width: 65,
 		height: 65,
-		borderRadius: "50%",
+		borderRadius: 999, // corrige la syntaxe non valide "50%"
 		backgroundColor: colors.ternary,
 		justifyContent: "center",
 		alignItems: "center",

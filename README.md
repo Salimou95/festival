@@ -44,9 +44,9 @@ festival/app/(tabs)/programmation.tsx
 
 ```ts
 Promise.all([
-  fetch("http://192.168.1.20:3000/programme").then((r) => r.json()),
-  fetch("http://192.168.1.20:3000/artists").then((r) => r.json()),
-  fetch("http://192.168.1.20:3000/stages").then((r) => r.json()),
+  fetch("http://xxxx/programme").then((r) => r.json()),
+  fetch("http://xxxx/artists").then((r) => r.json()),
+  fetch("http://xxxx/stages").then((r) => r.json()),
 ])
 ```
 

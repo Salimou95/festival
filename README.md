@@ -50,7 +50,7 @@ Promise.all([
 ])
 ```
 
-👉 **Remplacez `192.168.1.20` par votre propre adresse IP locale**, visible avec la commande :
+👉 **Remplacez `xxxxxx` par votre propre adresse IP locale**, visible avec la commande :
 
 ```bash
 ipconfig   # sur Windows
